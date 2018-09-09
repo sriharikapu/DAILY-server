@@ -1,0 +1,99 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger REST Article
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/"
+
+# Paths supported by the server application
+paths:
+  /newuser:
+    post:
+      operationId: "user.new"
+      tags:
+        - "User"
+      summary: "The user new operation"
+      description: "Creates a new user"
+      parameters:
+        - name: "user"
+          in: "body"
+          description: "user"
+          required: True
+          schema:
+            type: "object"
+            properties:
+             email:
+              type: "string"
+              description: "email"
+             address:
+              type: "string"
+              description: "public address of signer"
+      responses:
+        200:
+          description: "New user created successfully"
+          schema:
+            properties:
+              tx:
+                type: "string"
+  /send:
+    post:
+      operationId: "transaction.send"
+      tags:
+        - "Transaction"
+      summary: "Creates a transaction"
+      description: "Creates a new transaction"
+      parameters:
+        - name: "send"
+          in: "body"
+          description: "send"
+          required: True
+          schema:
+            type: "object"
+            properties:
+              email:
+                type: "string"
+                description: "email address"
+              to:
+                type: "string"
+                description: "to"
+              amount:
+                type: "string"
+                description: "amount"
+              address:
+                type: "string"
+                description: "address"
+              signature:
+                type: "string"
+                description: "signature"
+      responses:
+        200:
+          description: "Transaction submitted"
+          schema:
+            properties:
+              tx:
+                type: "string"
+  /adddevice:
+    get:
+      operationId: "device.add"
+      tags:
+        - "Device"
+      summary: "Adds a new trusted device"
+      description: "Adds a new trusted device"
+      responses:
+        200:
+          description: "Device was linked"
+          schema:
+            type: "array"
+            items:
+              properties:
+                email:
+                  type: "string"
+                address:
+                  type: "string"
+                signature:
+                  type: "string"
