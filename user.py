@@ -6,8 +6,10 @@ import _thread
 import logging
 import numpy as np
 
-def new(email, address):
+def new(user):
   
+  email = user.get('email')
+  address = user.get('address')
   import settings
   mydb = settings.mydb
   w3 = Web3(Web3.HTTPProvider("https://ropsten.infura.io/KZSQapS5wjr4Iw7JhgtE"))

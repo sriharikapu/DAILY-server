@@ -5,7 +5,13 @@ from web3.contract import ConciseContract
 import _thread
 import logging
 
-def send(email, to, amount, address, signature):
+def send(send):
+
+  email = send.get('email')
+  to = send.get('to')
+  amount = send.get('amount')
+  address = send.get('address')
+  signature = send.get('signature')
 
   import settings
   mydb = settings.mydb 
